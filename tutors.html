@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tutor Kami - SpeakingPartner</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#144bb8",
+                        "background-dark": "#111621",
+                        "emerald-accent": "#10b981",
+                        "gold-accent": "#d4af37",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#144bb8',
+                        'background-dark': '#111621',
+                        'card-bg': '#1c1f26',
+                        'emerald-accent': '#10b981',
+                        'gold-accent': '#d4af37',
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111621;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3c4453;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #144bb8;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#111621]/90 backdrop-blur-md">
+        <div class="flex h-16 max-w-7xl mx-auto items-center justify-between px-4">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-white">
+                    <span class="material-symbols-outlined text-[20px]">translate</span>
+                </div>
+                <span class="text-lg font-bold tracking-tight text-white">SpeakingPartner</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="programs.html"
+                    class="hidden sm:block text-sm font-medium text-gray-300 hover:text-white transition">Program</a>
+                <a href="tutors.html" class="hidden sm:block text-sm font-medium text-primary">Tutor</a>
+                <a href="index.html"
+                    class="flex h-9 items-center justify-center rounded-lg bg-white/10 px-4 text-sm font-bold text-white transition hover:bg-white/20">
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="relative bg-gradient-to-b from-[#1c1f26] to-[#111621] py-16 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div
+                class="inline-flex items-center gap-2 rounded-full border border-gold-accent/30 bg-gold-accent/10 px-4 py-2 mb-6">
+                <span class="material-symbols-outlined text-gold-accent text-[18px]">verified</span>
+                <span class="text-sm font-bold text-gold-accent uppercase tracking-wide">Pakar Tersertifikasi</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Temui Tutor Ahli Kami</h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Belajar dari tutor native dan lokal berpengalaman dengan
+                rekam jejak terbukti dalam membantu siswa mencapai tujuan mereka.</p>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="bg-[#111621] py-8 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="flex gap-3 flex-wrap">
+                    <button onclick="filterTutors('all')" id="filter-all"
+                        class="filter-btn px-4 py-2 rounded-lg bg-primary text-white font-medium text-sm transition">
+                        Semua Tutor
+                    </button>
+                    <button onclick="filterTutors('native')" id="filter-native"
+                        class="filter-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 font-medium text-sm transition">
+                        Penutur Asli
+                    </button>
+                    <button onclick="filterTutors('local')" id="filter-local"
+                        class="filter-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 font-medium text-sm transition">
+                        Pakar Lokal
+                    </button>
+                    <button onclick="filterTutors('ielts')" id="filter-ielts"
+                        class="filter-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 font-medium text-sm transition">
+                        Spesialis IELTS
+                    </button>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    <span id="tutor-count">12</span> tutor tersedia
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutors Grid -->
+    <div class="py-16 bg-[#111621]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tutorsGrid">
+                <!-- Tutor Card 1 -->
+                <div class="tutor-card bg-[#1c1f26] rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition group"
+                    data-type="native ielts">
+                    <div class="relative h-64 bg-gradient-to-b from-gray-700 to-gray-800">
+                        <img src="https://i.pravatar.cc/400?img=12" alt="Sarah Johnson"
+                            class="w-full h-full object-cover" />
+                        <div
+                            class="absolute top-4 right-4 bg-emerald-accent text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Native
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Sarah Johnson</h3>
+                            <div class="flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-gold-accent text-[16px] fill-current">star</span>
+                                <span class="text-white font-semibold">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">🇺🇸 Amerika Serikat • Pengalaman 8 tahun</p>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">school</span>
+                                <span class="text-gray-300">Spesialis IELTS & TOEFL</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                                <span class="text-gray-300">Sertifikasi CELTA</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-4">Pakar persiapan ujian dengan 500+ siswa sukses.
+                            Spesialisasi di bagian berbicara dan menulis.</p>
+
+                        <button onclick="openTutorModal('Sarah Johnson', 'sarah')"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition">
+                            Booking Sesi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tutor Card 2 -->
+                <div class="tutor-card bg-[#1c1f26] rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition group"
+                    data-type="native">
+                    <div class="relative h-64 bg-gradient-to-b from-gray-700 to-gray-800">
+                        <img src="https://i.pravatar.cc/400?img=33" alt="James Mitchell"
+                            class="w-full h-full object-cover" />
+                        <div
+                            class="absolute top-4 right-4 bg-emerald-accent text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Native
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">James Mitchell</h3>
+                            <div class="flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-gold-accent text-[16px] fill-current">star</span>
+                                <span class="text-white font-semibold">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">🇬🇧 Inggris Raya • Pengalaman 10 tahun</p>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">business_center</span>
+                                <span class="text-gray-300">Pakar Bahasa Inggris Bisnis</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                                <span class="text-gray-300">Kualifikasi DELTA</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-4">Pelatih korporat dengan pengalaman di perusahaan Fortune
+                            500. Fokus pada komunikasi profesional.</p>
+
+                        <button onclick="openTutorModal('James Mitchell', 'james')"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition">
+                            Booking Sesi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tutor Card 3 -->
+                <div class="tutor-card bg-[#1c1f26] rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition group"
+                    data-type="local ielts">
+                    <div class="relative h-64 bg-gradient-to-b from-gray-700 to-gray-800">
+                        <img src="https://i.pravatar.cc/400?img=47" alt="Aditya Pratama"
+                            class="w-full h-full object-cover" />
+                        <div
+                            class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Local Expert
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Aditya Pratama</h3>
+                            <div class="flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-gold-accent text-[16px] fill-current">star</span>
+                                <span class="text-white font-semibold">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">🇮🇩 Indonesia • Pengalaman 6 tahun</p>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">school</span>
+                                <span class="text-gray-300">Skor IELTS: 8.5</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                                <span class="text-gray-300">Sertifikasi TESOL</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-4">Memahami tantangan lokal. Membantu 300+ siswa Indonesia
+                            mencapai band 7+ di IELTS.</p>
+
+                        <button onclick="openTutorModal('Aditya Pratama', 'aditya')"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition">
+                            Booking Sesi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tutor Card 4 -->
+                <div class="tutor-card bg-[#1c1f26] rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition group"
+                    data-type="native">
+                    <div class="relative h-64 bg-gradient-to-b from-gray-700 to-gray-800">
+                        <img src="https://i.pravatar.cc/400?img=20" alt="Emily Davis"
+                            class="w-full h-full object-cover" />
+                        <div
+                            class="absolute top-4 right-4 bg-emerald-accent text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Native
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Emily Davis</h3>
+                            <div class="flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-gold-accent text-[16px] fill-current">star</span>
+                                <span class="text-white font-semibold">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">🇦🇺 Australia • Pengalaman 7 tahun</p>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">chat_bubble</span>
+                                <span class="text-gray-300">Pakar Percakapan</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                                <span class="text-gray-300">Sertifikasi TEFL</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-4">Pendekatan seru dan menarik untuk membangun kepercayaan
+                            diri dalam percakapan sehari-hari.</p>
+
+                        <button onclick="openTutorModal('Emily Davis', 'emily')"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition">
+                            Booking Sesi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tutor Card 5 -->
+                <div class="tutor-card bg-[#1c1f26] rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition group"
+                    data-type="local">
+                    <div class="relative h-64 bg-gradient-to-b from-gray-700 to-gray-800">
+                        <img src="https://i.pravatar.cc/400?img=28" alt="Siti Nurhaliza"
+                            class="w-full h-full object-cover" />
+                        <div
+                            class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Local Expert
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Siti Nurhaliza</h3>
+                            <div class="flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-gold-accent text-[16px] fill-current">star</span>
+                                <span class="text-white font-semibold">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">🇮🇩 Indonesia • Pengalaman 5 tahun</p>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">school</span>
+                                <span class="text-gray-300">Dosen Universitas</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                                <span class="text-gray-300">S2 TESOL</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-4">Gaya sabar dan mendorong. Spesialisasi dalam membantu
+                            pemula membangun pondasi kuat.</p>
+
+                        <button onclick="openTutorModal('Siti Nurhaliza', 'siti')"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition">
+                            Booking Sesi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tutor Card 6 -->
+                <div class="tutor-card bg-[#1c1f26] rounded-xl border border-white/5 overflow-hidden hover:border-primary/50 transition group"
+                    data-type="native ielts">
+                    <div class="relative h-64 bg-gradient-to-b from-gray-700 to-gray-800">
+                        <img src="https://i.pravatar.cc/400?img=15" alt="Michael Chen"
+                            class="w-full h-full object-cover" />
+                        <div
+                            class="absolute top-4 right-4 bg-emerald-accent text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Native
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Michael Chen</h3>
+                            <div class="flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-gold-accent text-[16px] fill-current">star</span>
+                                <span class="text-white font-semibold">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">🇨🇦 Kanada • Pengalaman 12 tahun</p>
+
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">school</span>
+                                <span class="text-gray-300">Penguji IELTS</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                                <span class="text-gray-300">PhD Linguistik</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-4">Mantan penguji IELTS dengan pengetahuan mendalam.
+                            Maksimalkan potensi skor Anda.</p>
+
+                        <button onclick="openTutorModal('Michael Chen', 'michael')"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition">
+                            Booking Sesi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="bg-[#1c1f26] rounded-xl p-8 max-w-md w-full mx-4 border border-white/10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-white text-2xl font-bold">Booking dengan <span id="tutorName"></span></h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form onsubmit="handleBooking(event)" class="space-y-4">
+                <div>
+                    <label class="text-gray-300 text-sm font-medium mb-2 block">Nama Anda</label>
+                    <input type="text" required
+                        class="w-full bg-[#252a33] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label class="text-gray-300 text-sm font-medium mb-2 block">Email</label>
+                    <input type="email" required
+                        class="w-full bg-[#252a33] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label class="text-gray-300 text-sm font-medium mb-2 block">Tanggal Pilihan</label>
+                    <input type="date" required
+                        class="w-full bg-[#252a33] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary focus:outline-none">
+                </div>
+                <div>
+                    <label class="text-gray-300 text-sm font-medium mb-2 block">Waktu Pilihan</label>
+                    <select
+                        class="w-full bg-[#252a33] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary focus:outline-none">
+                        <option>09:00 - 10:00</option>
+                        <option>10:00 - 11:00</option>
+                        <option>14:00 - 15:00</option>
+                        <option>15:00 - 16:00</option>
+                        <option>19:00 - 20:00</option>
+                        <option>20:00 - 21:00</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-gray-300 text-sm font-medium mb-2 block">Tipe Sesi</label>
+                    <select
+                        class="w-full bg-[#252a33] border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary focus:outline-none">
+                        <option>Sesi Percobaan (Gratis)</option>
+                        <option>General English</option>
+                        <option>Persiapan IELTS</option>
+                        <option>Bahasa Inggris Bisnis</option>
+                    </select>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-lg transition">
+                    Konfirmasi Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-[#0d1117] py-10 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="flex h-6 w-6 items-center justify-center rounded bg-primary text-white">
+                    <span class="material-symbols-outlined text-[14px]">translate</span>
+                </div>
+                <span class="text-white font-bold text-sm">SpeakingPartner</span>
+            </div>
+            <div class="flex gap-6 text-sm text-gray-400">
+                <a class="hover:text-white transition cursor-pointer">Privasi</a>
+                <a class="hover:text-white transition cursor-pointer">Syarat & Ketentuan</a>
+                <a class="hover:text-white transition cursor-pointer">Dukungan</a>
+            </div>
+            <div class="text-gray-600 text-sm">
+                © 2023 SpeakingPartner. Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentTutor = '';
+
+        function filterTutors(type) {
+            const cards = document.querySelectorAll('.tutor-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('bg-white/5', 'text-gray-300');
+            });
+            document.getElementById(`filter-${type}`).classList.remove('bg-white/5', 'text-gray-300');
+            document.getElementById(`filter-${type}`).classList.add('bg-primary', 'text-white');
+
+            // Filter cards
+            let count = 0;
+            cards.forEach(card => {
+                if (type === 'all' || card.dataset.type.includes(type)) {
+                    card.style.display = 'block';
+                    count++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('tutor-count').textContent = count;
+        }
+
+        function openTutorModal(name, id) {
+            currentTutor = name;
+            document.getElementById('tutorName').textContent = name;
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        function handleBooking(event) {
+            event.preventDefault();
+            alert(`Hebat! Sesi Anda dengan ${currentTutor} telah dibooking. Kami akan segera mengirimkan email konfirmasi.`);
+            closeModal();
+        }
+
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal();
+            }
+        }
+    </script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>

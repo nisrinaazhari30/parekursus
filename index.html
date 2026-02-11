@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SpeakingPartner - Master English</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#144bb8',
+                        'background-dark': '#111621',
+                        'card-bg': '#1c1f26',
+                        'emerald-accent': '#10b981',
+                        'gold-accent': '#d4af37',
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #144bb8;
+            --background-dark: #111621;
+            --card-bg: #1c1f26;
+            --emerald-accent: #10b981;
+            --gold-accent: #d4af37;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111621;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3c4453;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #144bb8;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(17, 22, 33, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            height: 64px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .btn-login {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 101;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 49;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 560px;
+            background: linear-gradient(rgba(17, 22, 33, 0.6), rgba(17, 22, 33, 0.8)),
+                url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin: 1rem;
+            border-radius: 12px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--emerald-accent), var(--gold-accent));
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(20, 75, 184, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(20, 75, 184, 0.9);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Trusted By Section */
+        .trusted-section {
+            padding: 3rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .logos-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .logo-item {
+            opacity: 0.5;
+            transition: all 0.3s;
+            filter: grayscale(100%);
+            width: 100%;
+            max-width: 120px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .logo-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            padding: 4rem 1rem;
+            background: var(--background-dark);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .section-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-info p {
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+        }
+
+        .btn-view-all {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .btn-view-all:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .program-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .program-card:hover {
+            border-color: rgba(16, 185, 129, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .program-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(37, 42, 51, 1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-accent);
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .program-card:hover .program-icon {
+            background: var(--gold-accent);
+            color: black;
+        }
+
+        .program-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .program-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .program-footer {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--emerald-accent);
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 4rem 1rem;
+            background: var(--background-dark);
+        }
+
+        .gallery-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            color: white;
+        }
+
+        .gallery-caption h4 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(to bottom, var(--background-dark), #0f1219);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .cta-note {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 1rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-link {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                margin: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons button {
+                width: 100%;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-buttons button {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">translate</span>
+                </div>
+                <span class="logo-text">SpeakingPartner</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" style="color: white;">Beranda</a>
+                <a href="about.html" class="nav-link">Tentang Kami</a>
+                <a href="programs.html" class="nav-link">Program</a>
+                <a href="portfolio.html" class="nav-link">Portofolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="tutors.html" class="nav-link">Tutor</a>
+                <button class="btn-login" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="mobile-menu-btn">☰</button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-link">Beranda</a>
+            <a href="about.html" class="mobile-nav-link">Tentang Kami</a>
+            <a href="programs.html" class="mobile-nav-link">Program</a>
+            <a href="portfolio.html" class="mobile-nav-link">Portofolio</a>
+            <a href="blog.html" class="mobile-nav-link">Blog</a>
+            <a href="tutors.html" class="mobile-nav-link">Tutor</a>
+            <a href="login.html" class="mobile-nav-link">Masuk</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="material-symbols-outlined" style="font-size: 16px;">star</span>
+                Pembelajaran Premium
+            </div>
+            <h1>Kuasai Bahasa Inggris dengan Tutor Lokal & Native</h1>
+            <h2>Buka potensi Anda dengan sesi privat 1-on-1. Rasakan pembelajaran bahasa premium yang disesuaikan dengan
+                karier dan tujuan akademik Anda.</h2>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="alert('Silakan daftar untuk klaim coba gratis!')">Klaim Coba
+                    Gratis</button>
+                <button class="btn-secondary" onclick="window.location.href='tutors.html'">Bicara dengan
+                    Konsultan</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="trusted-section">
+        <h3 class="section-title">Dipercaya oleh Pemimpin Industri</h3>
+        <div class="logos-grid">
+            <div class="logo-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"
+                    class="logo-img">
+            </div>
+            <div class="logo-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"
+                    class="logo-img">
+            </div>
+            <div class="logo-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"
+                    class="logo-img">
+            </div>
+            <div class="logo-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"
+                    class="logo-img">
+            </div>
+            <div class="logo-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Meta"
+                    class="logo-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" style="padding: 4rem 1rem;">
+        <div class="container"
+            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
+            <div style="max-width: 800px;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Mengapa Memilih SpeakingPartner?
+                </h2>
+                <p style="color: rgba(255, 255, 255, 0.6); line-height: 1.6; margin-bottom: 2rem;">
+                    Kami bukan sekadar kursus bahasa Inggris biasa. Kami adalah mitra pertumbuhan Anda. Dengan kurikulum
+                    yang dipersonalisasi dan tutor berdedikasi, kami memastikan setiap menit waktu belajar Anda
+                    memberikan dampak nyata.
+                </p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 2.5rem; font-weight: 700; color: var(--emerald-accent);">10k+</h3>
+                        <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">Alumni Sukses</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 2.5rem; font-weight: 700; color: var(--gold-accent);">98%</h3>
+                        <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">Tingkat Kepuasan</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">50+</h3>
+                        <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">Tutor Ahli</p>
+                    </div>
+                </div>
+                <button class="btn-secondary" style="margin-top: 2rem;"
+                    onclick="window.location.href='about.html'">Tentang Kami Lebih Lanjut</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <!-- Programs Section -->
+    <section class="programs-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-info">
+                    <h2>Program Unggulan Kami</h2>
+                    <p>Kursus komprehensif yang dirancang untuk setiap tahap perjalanan Anda. Pilih jalur yang sesuai
+                        dengan ambisi Anda.</p>
+                </div>
+                <button class="btn-view-all" onclick="window.location.href='programs.html'">Lihat Semua Kursus</button>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card" onclick="window.location.href='programs.html#general'">
+                    <div class="program-icon">
+                        <span class="material-symbols-outlined" style="font-size: 28px;">chat_bubble</span>
+                    </div>
+                    <h3>General English</h3>
+                    <p>Tingkatkan kelancaran dan kepercayaan diri dalam percakapan sehari-hari. Fokus pada pengucapan,
+                        kosakata, dan alur bicara yang natural.</p>
+                    <div class="program-footer">
+                        Pelajari Selengkapnya <span class="material-symbols-outlined"
+                            style="font-size: 16px;">arrow_forward</span>
+                    </div>
+                </div>
+
+                <div class="program-card" onclick="window.location.href='programs.html#ielts'">
+                    <div class="program-icon">
+                        <span class="material-symbols-outlined" style="font-size: 28px;">school</span>
+                    </div>
+                    <h3>Persiapan IELTS/TOEFL</h3>
+                    <p>Strategi persiapan intensif untuk skor ujian terbaik. Tes simulasi, umpan balik mendetail, dan
+                        target skor band.</p>
+                    <div class="program-footer">
+                        Pelajari Selengkapnya <span class="material-symbols-outlined"
+                            style="font-size: 16px;">arrow_forward</span>
+                    </div>
+                </div>
+
+                <div class="program-card" onclick="window.location.href='programs.html#corporate'">
+                    <div class="program-icon">
+                        <span class="material-symbols-outlined" style="font-size: 28px;">business_center</span>
+                    </div>
+                    <h3>Pelatihan Korporat</h3>
+                    <p>Keterampilan komunikasi bisnis untuk pertumbuhan profesional. Penulisan email, keterampilan
+                        presentasi, dan taktik negosiasi.</p>
+                    <div class="program-footer">
+                        Pelajari Selengkapnya <span class="material-symbols-outlined"
+                            style="font-size: 16px;">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 3rem;">Lingkungan Belajar
+                Kami</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"
+                    onclick="openImageModal('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800')">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+                        alt="Siswa belajar bersama">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h4>Kelas Interaktif</h4>
+                            <p>Kolaborasi real-time</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item"
+                    onclick="openImageModal('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800')">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="Belajar online">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h4>Belajar Fleksibel</h4>
+                            <p>Belajar dari mana saja</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item"
+                    onclick="openImageModal('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800')">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800" alt="Materi belajar">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h4>Materi Berkualitas</h4>
+                            <p>Sumber daya komprehensif</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item"
+                    onclick="openImageModal('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800')">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" alt="Pertemuan bisnis">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h4>Pengaturan Profesional</h4>
+                            <p>Pelatihan korporat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item"
+                    onclick="openImageModal('https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=800')">
+                    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=800" alt="Siswa bahagia">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h4>Kisah Sukses</h4>
+                            <p>Bergabung dengan 10.000+ lulusan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item"
+                    onclick="openImageModal('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800')">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" alt="Sesi tutoring">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">
+                            <h4>Tutor Ahli</h4>
+                            <p>Bimbingan satu-lawan-satu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImageModal()">×</button>
+            <img id="modalImage" class="modal-image" src="" alt="Full size image">
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Mulai Perjalanan Anda Hari Ini</h2>
+            <p>Jangan biarkan hambatan bahasa menghalangi Anda. Bergabunglah dengan ribuan siswa yang mencapai tujuan
+                karier dan pribadi mereka dengan SpeakingPartner.</p>
+            <div class="cta-buttons">
+                <button class="btn-primary" style="padding: 1rem 2rem; font-size: 1.125rem;"
+                    onclick="alert('Terima kasih atas minat Anda! Kami akan segera menghubungi Anda.')">Klaim Coba
+                    Gratis</button>
+                <button class="btn-secondary" style="padding: 1rem 2rem; font-size: 1.125rem;"
+                    onclick="window.location.href='tutors.html'">Bicara dengan Konsultan</button>
+            </div>
+            <p class="cta-note">Tidak diperlukan kartu kredit untuk sesi uji coba.</p>
+        </div>
+    </section>
+
+    <!-- Recent Blog Section -->
+    <section style="padding: 4rem 1rem; background: var(--background-dark);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-info">
+                    <h2>Artikel Terbaru</h2>
+                    <p>Wawasan dan tips untuk mempercepat pembelajaran Anda.</p>
+                </div>
+                <button class="btn-view-all" onclick="window.location.href='blog.html'">Lihat Semua Artikel</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Blog 1 -->
+                <div
+                    style="background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=600" alt="Blog 1"
+                        style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 1.5rem;">
+                        <span
+                            style="color: var(--primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Tips
+                            Belajar</span>
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin: 0.5rem 0 1rem;">5 Tips Rahasia Lancar
+                            Berbahasa Inggris</h3>
+                        <a href="blog.html"
+                            style="color: white; text-decoration: none; font-size: 0.875rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem;">Baca
+                            Artikel <span class="material-symbols-outlined"
+                                style="font-size: 16px;">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Blog 2 -->
+                <div
+                    style="background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600" alt="Blog 2"
+                        style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 1.5rem;">
+                        <span
+                            style="color: var(--primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">IELTS
+                            Prep</span>
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin: 0.5rem 0 1rem;">Academic vs General
+                            Training</h3>
+                        <a href="blog.html"
+                            style="color: white; text-decoration: none; font-size: 0.875rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem;">Baca
+                            Artikel <span class="material-symbols-outlined"
+                                style="font-size: 16px;">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Blog 3 -->
+                <div
+                    style="background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600" alt="Blog 3"
+                        style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 1.5rem;">
+                        <span
+                            style="color: var(--primary); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Karier</span>
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin: 0.5rem 0 1rem;">Kosakata Penting di
+                            Dunia Kerja</h3>
+                        <a href="blog.html"
+                            style="color: white; text-decoration: none; font-size: 0.875rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem;">Baca
+                            Artikel <span class="material-symbols-outlined"
+                                style="font-size: 16px;">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">translate</span>
+                        </div>
+                        <span class="logo-text" style="font-size: 1rem;">SpeakingPartner</span>
+                    </div>
+                    <p
+                        style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; margin-bottom: 1rem; line-height: 1.6;">
+                        Memberdayakan pembelajar di seluruh dunia untuk menguasai bahasa Inggris dan mencapai impian
+                        mereka melalui pendidikan yang dipersonalisasi.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" title="Facebook">f</a>
+                        <a href="#" class="social-icon" title="Twitter">𝕏</a>
+                        <a href="#" class="social-icon" title="LinkedIn">in</a>
+                        <a href="#" class="social-icon" title="Instagram">IG</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Program</h4>
+                    <ul class="footer-links">
+                        <li><a href="programs.html#general">General English</a></li>
+                        <li><a href="programs.html#ielts">Persiapan IELTS/TOEFL</a></li>
+                        <li><a href="programs.html#corporate">Pelatihan Korporat</a></li>
+                        <li><a href="programs.html">Lihat Semua Program</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="tutors.html">Tutor Kami</a></li>
+                        <li><a href="portfolio.html">Portofolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Dukungan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat Layanan</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 SpeakingPartner. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

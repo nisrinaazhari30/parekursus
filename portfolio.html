@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portofolio - SpeakingPartner</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#144bb8',
+                        'background-dark': '#111621',
+                        'card-bg': '#1c1f26',
+                        'emerald-accent': '#10b981',
+                        'gold-accent': '#d4af37',
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #144bb8;
+            --background-dark: #111621;
+            --card-bg: #1c1f26;
+            --emerald-accent: #10b981;
+            --gold-accent: #d4af37;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111621;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3c4453;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #144bb8;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(17, 22, 33, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            height: 64px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Mobile Menu Container */
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 49;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            /* Separator line */
+        }
+
+        .mobile-nav-link:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .btn-login {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 6rem 1rem 3rem;
+            text-align: center;
+            background: linear-gradient(rgba(17, 22, 33, 0.8), rgba(17, 22, 33, 1)),
+                url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1600') center/cover;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Portfolio Gallery */
+        .portfolio-section {
+            padding: 4rem 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .gallery-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 1rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-link {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">translate</span>
+                </div>
+                <span class="logo-text">SpeakingPartner</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Beranda</a>
+                <a href="about.html" class="nav-link">Tentang Kami</a>
+                <a href="programs.html" class="nav-link">Program</a>
+                <a href="portfolio.html" class="nav-link" style="color: white;">Portofolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="tutors.html" class="nav-link">Tutor</a>
+                <button class="btn-login" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="mobile-menu-btn">☰</button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-link">Beranda</a>
+            <a href="about.html" class="mobile-nav-link">Tentang Kami</a>
+            <a href="programs.html" class="mobile-nav-link">Program</a>
+            <a href="portfolio.html" class="mobile-nav-link">Portofolio</a>
+            <a href="blog.html" class="mobile-nav-link">Blog</a>
+            <a href="tutors.html" class="mobile-nav-link">Tutor</a>
+            <a href="login.html" class="mobile-nav-link">Masuk</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Portofolio Siswa Kami</h1>
+        <p>Lihat bagaimana siswa kami mencapai kesuksesan dan transformasi melalui program kami.</p>
+    </header>
+
+    <!-- Portfolio Content -->
+    <section class="portfolio-section">
+        <div class="gallery-grid">
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800"
+                    alt="Student Presentation">
+                <div class="gallery-content">
+                    <h3>Presentasi Bisnis Internasional</h3>
+                    <p>Siswa kami mempresentasikan ide bisnis di konferensi global setelah mengikuti kelas Public
+                        Speaking.</p>
+                    <div class="gallery-tags">
+                        <span class="tag">Korporat</span>
+                        <span class="tag">Public Speaking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" alt="IELTS Success">
+                <div class="gallery-content">
+                    <h3>Sukses Beasiswa Luar Negeri</h3>
+                    <p>Perjalanan Sarah mendapatkan skor IELTS 7.5 dan diterima di Universitas Melbourne.</p>
+                    <div class="gallery-tags">
+                        <span class="tag">IELTS</span>
+                        <span class="tag">Akademik</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800" alt="Class Activity">
+                <div class="gallery-content">
+                    <h3>Workshop Intensif</h3>
+                    <p>Suasana belajar yang interaktif dan menyenangkan dalam sesi workshop akhir pekan kami.</p>
+                    <div class="gallery-tags">
+                        <span class="tag">Workshop</span>
+                        <span class="tag">Komunitas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800" alt="Team Meeting">
+                <div class="gallery-content">
+                    <h3>Negosiasi Bisnis</h3>
+                    <p>Simulasi negosiasi bisnis real-time dengan tutor native speaker untuk melatih kepercayaan diri.
+                    </p>
+                    <div class="gallery-tags">
+                        <span class="tag">Bisnis</span>
+                        <span class="tag">Simulasi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">translate</span>
+                        </div>
+                        <span class="logo-text" style="font-size: 1rem;">SpeakingPartner</span>
+                    </div>
+                    <p
+                        style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; margin-bottom: 1rem; line-height: 1.6;">
+                        Memberdayakan pembelajar di seluruh dunia untuk menguasai bahasa Inggris dan mencapai impian
+                        mereka melalui pendidikan yang dipersonalisasi.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" title="Facebook">f</a>
+                        <a href="#" class="social-icon" title="Twitter">𝕏</a>
+                        <a href="#" class="social-icon" title="LinkedIn">in</a>
+                        <a href="#" class="social-icon" title="Instagram">IG</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Program</h4>
+                    <ul class="footer-links">
+                        <li><a href="programs.html#general">General English</a></li>
+                        <li><a href="programs.html#ielts">Persiapan IELTS/TOEFL</a></li>
+                        <li><a href="programs.html#corporate">Pelatihan Korporat</a></li>
+                        <li><a href="programs.html">Lihat Semua Program</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="tutors.html">Tutor Kami</a></li>
+                        <li><a href="portfolio.html">Portofolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Dukungan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat Layanan</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2023 SpeakingPartner. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Program - SpeakingPartner</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#144bb8",
+                        "background-dark": "#111621",
+                        "emerald-accent": "#10b981",
+                        "gold-accent": "#d4af37",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#144bb8',
+                        'background-dark': '#111621',
+                        'card-bg': '#1c1f26',
+                        'emerald-accent': '#10b981',
+                        'gold-accent': '#d4af37',
+                    },
+                    fontFamily: {
+                        display: ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111621;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3c4453;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #144bb8;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#111621]/90 backdrop-blur-md">
+        <div class="flex h-16 max-w-7xl mx-auto items-center justify-between px-4">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-white">
+                    <span class="material-symbols-outlined text-[20px]">translate</span>
+                </div>
+                <span class="text-lg font-bold tracking-tight text-white">SpeakingPartner</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="programs.html" class="text-sm font-medium text-primary">Program</a>
+                <a href="tutors.html"
+                    class="hidden sm:block text-sm font-medium text-gray-300 hover:text-white transition">Tutor</a>
+                <a href="index.html"
+                    class="flex h-9 items-center justify-center rounded-lg bg-white/10 px-4 text-sm font-bold text-white transition hover:bg-white/20">
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="relative bg-gradient-to-b from-[#1c1f26] to-[#111621] py-16 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div
+                class="inline-flex items-center gap-2 rounded-full border border-emerald-accent/30 bg-emerald-accent/10 px-4 py-2 mb-6">
+                <span class="material-symbols-outlined text-emerald-accent text-[18px]">workspace_premium</span>
+                <span class="text-sm font-bold text-emerald-accent uppercase tracking-wide">Semua Program</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Pilih Jalur Belajar Anda</h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Program yang dirancang khusus untuk memenuhi tujuan
+                spesifik Anda, dari percakapan santai hingga penguasaan profesional.</p>
+        </div>
+    </div>
+
+    <!-- General English Program -->
+    <section id="general" class="py-16 bg-[#111621]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-gold-accent text-black">
+                            <span class="material-symbols-outlined text-[32px]">chat_bubble</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white">General English</h2>
+                    </div>
+                    <p class="text-gray-400 text-lg mb-6">Sempurna untuk pemula hingga menengah yang ingin membangun
+                        kepercayaan diri dalam percakapan sehari-hari.</p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Kelancaran Percakapan</h3>
+                                <p class="text-gray-400 text-sm">Kuasai percakapan harian dengan alur natural dan
+                                    percaya diri</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Penguasaan Pengucapan</h3>
+                                <p class="text-gray-400 text-sm">Tingkatkan aksen dan kejelasan dengan umpan balik
+                                    personal</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Pembangunan Kosakata</h3>
+                                <p class="text-gray-400 text-sm">Perluas bank kata Anda dengan istilah praktis dunia
+                                    nyata</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1c1f26] rounded-lg p-6 border border-white/5 mb-6">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <p class="text-2xl font-bold text-primary">12 Minggu</p>
+                                <p class="text-gray-400 text-sm">Durasi</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-primary">24 Sesi</p>
+                                <p class="text-gray-400 text-sm">Total Kelas</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-primary">$299</p>
+                                <p class="text-gray-400 text-sm">Per Bulan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="addToCart('General English', '$299', '12 Minggu')"
+                        class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-lg transition transform hover:scale-105">
+                        Daftar Sekarang
+                    </button>
+                </div>
+
+                <div class="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+                        alt="Students learning" class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IELTS/TOEFL Program -->
+    <section id="ielts" class="py-16 bg-[#0f1219]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden order-2 md:order-1">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800" alt="Exam preparation"
+                        class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+
+                <div class="fade-in order-1 md:order-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-gold-accent text-black">
+                            <span class="material-symbols-outlined text-[32px]">school</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white">Persiapan IELTS/TOEFL</h2>
+                    </div>
+                    <p class="text-gray-400 text-lg mb-6">Pelatihan intensif fokus ujian untuk membantu Anda mencapai
+                        target skor band untuk universitas atau imigrasi.</p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Tes Mock & Simulasi</h3>
+                                <p class="text-gray-400 text-sm">Kondisi ujian nyata dengan analisis performa mendetail
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Fokus Berbicara & Menulis</h3>
+                                <p class="text-gray-400 text-sm">Umpan balik ahli pada bagian yang paling menantang</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Jaminan Skor</h3>
+                                <p class="text-gray-400 text-sm">Capai target skor Anda atau dapatkan sesi tambahan
+                                    gratis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1c1f26] rounded-lg p-6 border border-white/5 mb-6">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <p class="text-2xl font-bold text-primary">8 Minggu</p>
+                                <p class="text-gray-400 text-sm">Intensif</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-primary">32 Sesi</p>
+                                <p class="text-gray-400 text-sm">Total Kelas</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-primary">$449</p>
+                                <p class="text-gray-400 text-sm">Per Bulan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="addToCart('Persiapan IELTS/TOEFL', '$449', '8 Minggu')"
+                        class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-lg transition transform hover:scale-105">
+                        Daftar Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate Training Program -->
+    <section id="corporate" class="py-16 bg-[#111621]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-gold-accent text-black">
+                            <span class="material-symbols-outlined text-[32px]">business_center</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white">Pelatihan Korporat</h2>
+                    </div>
+                    <p class="text-gray-400 text-lg mb-6">Tingkatkan keterampilan komunikasi profesional Anda untuk
+                        kemajuan karier dan kesuksesan bisnis.</p>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Penulisan Email Bisnis</h3>
+                                <p class="text-gray-400 text-sm">Buat email dan laporan profesional yang efektif</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Keterampilan Presentasi</h3>
+                                <p class="text-gray-400 text-sm">Sampaikan presentasi dan presentasi bisnis dengan
+                                    percaya diri</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-accent mt-1">check_circle</span>
+                            <div>
+                                <h3 class="text-white font-semibold">Negosiasi & Pertemuan</h3>
+                                <p class="text-gray-400 text-sm">Kuasai diskusi dan negosiasi bisnis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1c1f26] rounded-lg p-6 border border-white/5 mb-6">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <p class="text-2xl font-bold text-primary">16 Minggu</p>
+                                <p class="text-gray-400 text-sm">Komprehensif</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-primary">32 Sesi</p>
+                                <p class="text-gray-400 text-sm">Total Kelas</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-primary">$549</p>
+                                <p class="text-gray-400 text-sm">Per Bulan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="addToCart('Pelatihan Korporat', '$549', '16 Minggu')"
+                        class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-lg transition transform hover:scale-105">
+                        Daftar Sekarang
+                    </button>
+                </div>
+
+                <div class="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" alt="Business meeting"
+                        class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-16 bg-[#0f1219]">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Bandingkan Semua Program</h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="text-left p-4 text-gray-400 font-semibold">Fitur</th>
+                            <th class="text-center p-4 text-white font-bold">General English</th>
+                            <th class="text-center p-4 text-white font-bold">IELTS/TOEFL</th>
+                            <th class="text-center p-4 text-white font-bold">Korporat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-300">
+                        <tr class="border-b border-white/5">
+                            <td class="p-4">Sesi 1-on-1</td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-4">Tutor Native</td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-4">Tes Mock</td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-gray-600">close</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-gray-600">close</span></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-4">Konten Spesifik Industri</td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-gray-600">close</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-gray-600">close</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-4">Sertifikat</td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                            <td class="text-center p-4"><span
+                                    class="material-symbols-outlined text-emerald-accent">check</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Harga Mulai</td>
+                            <td class="text-center p-4 text-primary font-bold">$299/bln</td>
+                            <td class="text-center p-4 text-primary font-bold">$449/bln</td>
+                            <td class="text-center p-4 text-primary font-bold">$549/bln</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-b from-[#111621] to-[#0f1219]">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4">Siap Memulai?</h2>
+            <p class="text-gray-400 text-lg mb-8">Pilih program yang sesuai dengan tujuan Anda dan mulai perjalanan Anda
+                hari ini.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="window.location.href='index.html'"
+                    class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition">
+                    Klaim Coba Gratis
+                </button>
+                <button onclick="window.location.href='tutors.html'"
+                    class="border border-white/20 hover:bg-white/5 text-white font-bold py-3 px-8 rounded-lg transition">
+                    Lihat Tutor Kami
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-[#0d1117] py-10 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="flex h-6 w-6 items-center justify-center rounded bg-primary text-white">
+                    <span class="material-symbols-outlined text-[14px]">translate</span>
+                </div>
+                <span class="text-white font-bold text-sm">SpeakingPartner</span>
+            </div>
+            <div class="flex gap-6 text-sm text-gray-400">
+                <a class="hover:text-white transition cursor-pointer">Privasi</a>
+                <a class="hover:text-white transition cursor-pointer">Syarat & Ketentuan</a>
+                <a class="hover:text-white transition cursor-pointer">Dukungan</a>
+            </div>
+            <div class="text-gray-600 text-sm">
+                © 2023 SpeakingPartner. Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
